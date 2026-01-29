@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QanGen – AI Question Paper Generator</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" class="logo-icon" />
+        <span class="logo-text">QanGen</span>
+      </div>
+      <h1 class="title">AI Question Paper Generator</h1>
+      <p class="subtitle">
+        Generate exam & interview questions from documents using AI
+      </p>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- STEP 1: UPLOAD -->
+      <section class="step-section">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2 class="step-title">Upload PDF</h2>
+        </div>
+
+        <div class="glass-card upload-card">
+          <div class="upload-area" id="uploadArea">
+            <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" class="upload-icon" />
+            <div class="upload-text">Drag & Drop your PDF</div>
+            <div class="upload-subtext">or click to browse</div>
+            <input type="file" id="fileInput" accept="application/pdf" hidden />
+          </div>
+
+          <div id="fileName" class="file-info"></div>
+          <div id="uploadStatus" class="upload-status"></div>
+        </div>
+      </section>
+
+      <!-- STEP 2: SETTINGS -->
+      <section class="step-section">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2 class="step-title">Question Settings</h2>
+        </div>
+
+        <form id="generateForm" class="glass-card">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label>Topic</label>
+              <input name="topic" placeholder="e.g. Data Structures" required />
+            </div>
+
+            <div class="form-group">
+              <label>Marks</label>
+              <input name="marks" placeholder="e.g. 50" required />
+            </div>
+
+            <div class="form-group">
+              <label>Difficulty</label>
+              <input name="difficulty" placeholder="Describe difficulty"></input>
+            </div>
+
+            <div class="form-group">
+              <label>Question Type</label>
+              <input name="qtype" placeholder="Question type (MCQ / Descriptive)" />
+            </div>
+
+            <div class="form-group form-group-full">
+              <label>Number of Questions</label>
+              <input type="number" name="num" value="5" min="1" />
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" id="generateBtn" disabled>
+            Generate Questions
+          </button>
+        </form>
+      </section>
+
+      <!-- STEP 3: OUTPUT -->
+      <section class="step-section" id="outputSection" style="display:none">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h2 class="step-title">Generated Output</h2>
+        </div>
+
+        <div class="glass-card">
+          <div class="output-header">
+            <h3 id="outputTopic"></h3>
+            <div class="output-actions">
+              <button id="copyBtn" class="btn btn-icon">📋</button>
+              <button id="downloadBtn" class="btn btn-icon">⬇</button>
+              <button id="printBtn" class="btn btn-icon">🖨</button>
+            </div>
+          </div>
+          <pre id="outputContent" class="output-content"></pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <div id="loadingText" class="loading-text"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- JS -->
+  <script src="/static/script.js"></script>
+</body>
+</html>
